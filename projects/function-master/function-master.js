@@ -211,30 +211,42 @@ function isFriend(name, object) {
 
 function nonFriends(name, array) {
         
-    let friends = [];
-    let people = [];
+//     let friends = [];
+//     let people = [];
 
-	for (let person of array) {
+// 	for (let person of array) {
 	    
-	    people.push(person.name)
+// 	    people.push(person.name)
 
-		if (person.name === name) {
-			friends = person.friends;
-		}
+// 		if (person.name === name) {
+// 			friends = person.friends;
+// 		}
 
-	}
+// 	}
 
-	let nonFriendsArr = [];
+// 	let nonFriendsArr = [];
 
-	for (let person of people) {
+// 	for (let person of people) {
 
-		if (!(friends.includes(person) || person === name)) {
-			nonFriendsArr.push(person);
-		}
+// 		if (!(friends.includes(person) || person === name)) {
+// 			nonFriendsArr.push(person);
+// 		}
 
-	}
+// 	}
 
-	return nonFriendsArr;
+// 	return nonFriendsArr;
+
+    let nonFriends = [];
+
+    for (let i = 0; i < array.length; ++i) {
+        
+        if (!array[i].friends.includes(name) && array[i].name !== name) {
+            nonFriends.push(array[i].name);
+        }
+        
+    }
+    
+    return nonFriends;
 
 }
 //////////////////////////////////////////////////////////////////////
@@ -246,7 +258,9 @@ function updateObject(object, key, value) {
     // Should take an object, a key and a value. Should update the property <key> on <object> with new <value>. 
     // If <key> does not exist on <object> create it.
     
-    return {...object, [key]: value};
+    // return {...object, [key]: value};
+    object[key] = value;
+    return object;
 }
 
 //////////////////////////////////////////////////////////////////////
