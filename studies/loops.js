@@ -19,19 +19,19 @@
  * loop body.
  */
  
- let count = 0;
- 
- while (count <= 10) {
-    console.log(count); // zero through ten is output to console
-    ++count;
- }
+let count = 0;
+
+while (count <= 10) {
+   console.log(count); // zero through ten is output to console
+   ++count;
+}
  
 count = 10;
  
- while (count >= 0) {
-    console.log(count); // ten through zero is output to console
-    --count;
- }
+while (count >= 0) {
+   console.log(count); // ten through zero is output to console
+   --count;
+}
  
 /**
  * While loops continue to execute until the loop control variable tests false. 
@@ -50,51 +50,51 @@ count = 10;
      console.log(`Iteration number ${i}`)
  }
  
- /**
-  * For loops can use a decrementing loop control variable, as well. This allows
-  * us to step backwards through an array. Note the second and third arguments
-  * in the following code sample. The number against which we are testing the
-  * loop control variable is less than the value to which it was initialized.
-  * The loop control variable is decremented by one at the end of every
-  * iteration.
-  */
-  
-  let dogs = ["robbie", "misty", "sara", "oliver", "kira"];
-  
-  // i is initialized to the length of the array minus one because
-  // arrays are zero indexed
-  
-  // the loop is repeated as long as i is greater than or equal to 
-  // zero so we can access the first element in the array
-  for (let i = dogs.length - 1; i >= 0; --i) {
-      console.log(`${dogs[i]} was a good dog`)
-  }
+/**
+ * For loops can use a decrementing loop control variable, as well. This allows
+ * us to step backwards through an array. Note the second and third arguments
+ * in the following code sample. The number against which we are testing the
+ * loop control variable is less than the value to which it was initialized.
+ * The loop control variable is decremented by one at the end of every
+ * iteration.
+ */
  
- /**
-  * For loops come in additional flavors: for of and for in. For of loops step
-  * through every element in an array. They should be used when the index of the 
-  * loop is not used in the loop body. They should be used because they syntax
-  * is easier to understand. The syntax follows:
-  */
-  
-  let colors = ["red", "orange", "yellow", "green", "blue"];
-  
-  for (let color of colors) {
-      console.log(color); // can refer to element as color, not colors[i]
-  }
-  
-  /** For in loops allow us to examine every key contained in an object and 
-   * reference that key. The key can be used to access the value associated with
-   * that key. They use the following syntax. Note that when accessing the value 
-   * no quotation marks surround key because key is a string.
-   */
-   
-   let person = {
-     name: "Jon",
-     age: 32,
-     canDriveWell: false
-   };
-   
-   for (let key in person) {
-       console.log(`${key}: ${person[key]}`)
-   }
+ let dogs = ["robbie", "misty", "sara", "oliver", "kira"];
+ 
+ // i is initialized to the length of the array minus one because
+ // arrays are zero indexed
+ 
+ // the loop is repeated as long as i is greater than or equal to 
+ // zero so we can access the first element in the array
+ for (let i = dogs.length - 1; i >= 0; --i) {
+     console.log(`${dogs[i]} was a good dog`)
+ }
+ 
+/**
+ * For loops come in additional flavors: for of and for in. For of loops step
+ * through every element in an array. They should be used when the index of the 
+ * loop is not used in the loop body. They should be used because they syntax
+ * is easier to understand. The syntax follows:
+ */
+ 
+ let colors = ["red", "orange", "yellow", "green", "blue"];
+ 
+ for (let color of colors) {
+     console.log(color); // can refer to element as color, not colors[i]
+ }
+ 
+/** For in loops allow us to examine every key contained in an object and 
+ * reference that key. The key can be used to access the value associated with
+ * that key. They use the following syntax. Note that when accessing the value 
+ * no quotation marks surround key because key is a string.
+ */
+ 
+ let person = {
+   name: "Jon",
+   age: 32,
+   canDriveWell: false
+ };
+ 
+ for (let key in person) {
+     console.log(`${key}: ${person[key]}`)
+ }
