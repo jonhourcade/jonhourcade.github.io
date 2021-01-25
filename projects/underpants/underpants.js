@@ -49,11 +49,11 @@ _.identity = function(value) {
 _.typeOf = function(value) {
 
     if (typeof value === "string") return "string";
-    if (Array.isArray(value)) return "array";
-    if (typeof value === "undefined") return "undefined";
+    if (Array.isArray(value)) return "array"; // an array is an objec, check before you check if value is object
+    if (value === undefined) return "undefined"; // undefined is datatype, don't have to use typeof
     if (typeof value === "number") return "number";
     if (typeof value === "boolean") return "boolean";
-    if (value === null) return "null";
+    if (value === null) return "null"; // null is also datatype, don't have to use typeof
     if (typeof value === "function") return "function";
     if (typeof value === "object") return "object";
 
@@ -82,8 +82,9 @@ _.first = function(array, number) {
     if (!Array.isArray(array)) return [];
     if (!number || isNaN(number)) return array[0];
 
-    if (number === 1) return array[0];
-    else return array.splice(0, number);
+    let newArr = [...array];
+    return newArr.splice(0, number); // if you use splice, use splice on clone
+    // don't mutate the original array
 
 }
 
@@ -108,13 +109,12 @@ _.first = function(array, number) {
 
 _.last = function(array, number) {
 
-    if (!Array.isArray(array)) return [];
+    if (!Array.isArray(array) || number < 0) return [];
     if (!number || isNaN(number)) return array[array.length - 1];
-
-    if (number < 0) return [];
     if (number > array.length) return array;
 
-    return array.splice(array.length - number, number);
+    let newArr = [...array]; // clone array because splice mutates array upon which it is called
+    return newArr.splice(newArr.length - number, number);
 
 }
 
@@ -138,10 +138,7 @@ _.last = function(array, number) {
 _.indexOf = function(array, value) {
 
     for (let i = 0; i < array.length; ++i) {
-
-        if (array[i] === value) {
-            return i;
-        }
+        if (array[i] === value) return i;
     }
 
     return -1;
@@ -164,13 +161,13 @@ _.indexOf = function(array, value) {
  */
 
 _.contains = function(array, value) {
-    let result = false;
+    let foundIt = false;
 
-    for (let i = 0; i < array.length && !result; i++) {
-        result = array[i] === value ? true : false;
+    for (let i = 0; i < array.length && !foundIt; i++) {
+        foundIt = array[i] === value ? true : false;
     }
 
-    return result;
+    return foundIt;
 }
 
 
@@ -225,13 +222,10 @@ _.unique = function(array) {
 
     let newArr = [];
 
-    for (let e of array) {
-
-        if (this.indexOf(newArr, e) === -1) {
-            newArr.push(e);
-        }
-
-    }
+    this.each(array, (element) => {
+        if (!this.contains(newArr, element)) newArr.push(element); // have to use arrow function, if you use function keyword,
+        // this refers to function, if you use arrow function, this refers to object
+    });
 
     return newArr;
 
@@ -258,13 +252,9 @@ _.filter = function(array, callback) {
 
     let newArr = [];
 
-    for (let i = 0; i < array.length; ++i) {
-
-        if (callback(array[i], i, array)) {
-            newArr.push(array[i]);
-        }
-
-    }
+    this.each(array, function(element, index, array) {
+        if (callback(element, index, array)) newArr.push(element);
+    });
 
     return newArr;
 
@@ -288,13 +278,9 @@ _.reject = function(array, callback) {
 
     let newArr = [];
 
-    for (let i = 0; i < array.length; ++i) {
-
-        if (!callback(array[i], i, array)) {
-            newArr.push(array[i]);
-        }
-
-    }
+    this.each(array, function(element, index, array) {
+        if (!callback(element, index, array)) newArr.push(element);
+    });
 
     return newArr;
 
@@ -325,17 +311,10 @@ _.partition = function(array, callback) {
     let testsTrue = [];
     let testsFalse = [];
 
-    for (let i = 0; i < array.length; ++i) {
-
-        if (callback(array[i])) {
-            testsTrue.push(array[i]);
-
-        }
-        else {
-            testsFalse.push(array[i]);
-        }
-
-    }
+    this.each(array, function(element, index, array) {
+        if (callback(element, index, array)) testsTrue.push(element);
+        else testsFalse.push(element);
+    });
 
     return [
         testsTrue,
@@ -386,11 +365,7 @@ _.map = function(collection, callback) {
  */
 
 _.pluck = function(objects, property) {
-
-    return this.map(objects, function(object) {
-        return object[property];
-    });
-
+    return this.map(objects, object => object[property]);
 }
 
 
@@ -417,7 +392,7 @@ _.pluck = function(objects, property) {
 
 _.every = function(collection, callback) {
 
-    let allTrue;
+    let allTrue = true;
 
     if (!callback) {
 
@@ -425,16 +400,12 @@ _.every = function(collection, callback) {
             if (!element) allTrue = false;
         });
 
-        if (allTrue === undefined) allTrue = true;
-
     }
     else {
 
         this.each(collection, function(element, index, array) {
             if (!callback(element, index, array)) allTrue = false;
         });
-
-        if (allTrue === undefined) allTrue = true;
 
     }
 
@@ -466,15 +437,13 @@ _.every = function(collection, callback) {
 
 _.some = function(collection, callback) {
 
-    let allTrue;
+    let allTrue = false;
 
     if (!callback) {
 
-        this.each(collection, function(element) {
+        this.each(collection, function(element) { // can't use for loop cause each function processes arrays and objects appropriately
             if (element) allTrue = true;
         });
-
-        if (allTrue === undefined) allTrue = false;
 
     }
     else {
@@ -482,8 +451,6 @@ _.some = function(collection, callback) {
         this.each(collection, function(element, index, array) {
             if (callback(element, index, array)) allTrue = true;
         });
-
-        if (allTrue === undefined) allTrue = false;
 
     }
 
@@ -547,9 +514,7 @@ _.reduce = function(array, callback, seed) {
         returnValue = seed;
 
         this.each(array, function(element, index, array) {
-
             returnValue = callback(returnValue, element, index, array);
-
         });
 
     }
@@ -559,11 +524,7 @@ _.reduce = function(array, callback, seed) {
         returnValue = array[0];
 
         this.each(array, function(element, index, array) {
-
-            if (index !== 0) {
-                returnValue = callback(returnValue, element, index, array);
-            }
-
+            if (index !== 0) returnValue = callback(returnValue, element, index, array);
         });
 
     }
@@ -600,12 +561,79 @@ _.extend = function(obj1, obj2, ...remainingObjs) {
             for (let key in obj) {
                 obj1[key] = obj[key];
             }
-
         }
-
     }
 
     return obj1;
+
+}
+
+// Creates a version of the function that can only be called one time. 
+// Repeated calls to the modified function will have no effect, returning the value from the original call. 
+// Useful for initialization functions, instead of having to set a boolean flag and then check it later.
+
+
+_.once = function (callback) {
+
+    let canInvoke = true;
+    let returnValue;
+
+    return function () {
+
+        if (canInvoke) {
+            returnValue = callback();
+            canInvoke = false;
+        }
+        
+        return returnValue;
+
+    }
+}
+
+_.shuffle = function (array) {
+
+    // Returns a shuffled copy of the list, using a version of the Fisher-Yates shuffle.
+
+    let newArr = [];
+
+    for (let i = array.length - 1; i >= 0; --i) {
+        newArr.push(array.splice(Math.floor(Math.random() * i), 1)[0]);
+    }
+
+    return newArr;
+
+}
+
+_.sortBy = function (list, iteratee) {
+
+    // Returns a (stably) sorted copy of list, ranked in ascending order by the results of running each value through iteratee. 
+    // iteratee may also be the string name of the property to sort by (eg. length). This function uses operator < (note).
+
+    if (typeof iteratee === "function") {
+
+        return list.map(function (element) {
+            return [element, iteratee(element)];
+
+        }).sort(function (el1, el2) {
+            return el1[1] - el2[1];
+
+        }).map(function (element) {
+            return element[0];
+        });
+
+    } else if (typeof iteratee === "string") {
+
+        return list.map(function (element) {
+            return [element, element[iteratee]];
+
+        }).sort(function (el1, el2) {
+            return el1[1].length - el2[1].length;
+
+        }).map(function (element) {
+            return element[0];
+        });
+
+    }
 
 }
 

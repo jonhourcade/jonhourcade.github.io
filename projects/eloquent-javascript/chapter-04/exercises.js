@@ -3,21 +3,35 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 function range(val1, val2, step) {
-  
-  let arr = [];
-  
-  if (val1 === val2) return arr;
-  
-  let increment = null;
-  
-  if (step) increment = step;
-  else increment = 1;
-  
-  for (let i = val1; i <= val2; i += increment) {
-    arr.push(i);
+
+  // it("should create array without contents when given same numbers as range", function () {
+  //   expect(range(1, 1)).to.deep.equal([]);
+  // });
+  // it("should create array with contents of integers within given range", function () {
+  //   expect(range(1, 3)).to.deep.equal([1, 2, 3]);
+  // });
+  // it("should create array with contents of integers within given range, integrating given step", function () {
+  //   expect(range(1, 5, 2)).to.deep.equal([1, 3, 5]);
+  // });
+  // it("should create array with contents of integers within given range, integrating negative step", function () {
+  //   expect(range(1, 5, -1)).to.deep.equal([]);
+  // });
+
+  let returnArr = [];
+
+  if (step) {
+    
+    if (step < 0) {
+      
+    } else if (step > 0) {
+      
+    }
+    
+  } else {
+    // if step is not provided
   }
-  
-  return arr;
+
+  return returnArr;
 
 }
 

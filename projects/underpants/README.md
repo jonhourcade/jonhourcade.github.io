@@ -38,21 +38,21 @@ Some quick notes that may come in handy:
 ### Extra Credit:
 See Instructor for instructions.
 - defaults
-- *once*
+- *once* check
 - memoize
 - delay
-- shuffle
+- shuffle check
 
 ### Double Extra Credit:
 See Instructor for instructions.
-- once
+- once check
 - invoke
-- sortBy
-- zip
+- sortBy check
+- zip check
 - flatten
-- intersection
-- difference
-- throttle
+- intersection check
+- difference check
+- throttle check
 
 **Note:** Some browsers provide built-in functions--including `forEach`, `map`,
 `reduce` and `filter`--that replicate the functionality of some of the functions
