@@ -1,0 +1,150 @@
+body {
+    background-color:#283149;
+    color: white;
+    margin: 20px;
+    font-family: 'Catamaran', sans-serif;
+}
+
+header {
+    width: 100%;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+header a:hover {
+    color: yellow;
+}
+
+button {
+    margin: 5px;
+}
+#welcomeMessage {
+    font-size: 1.25em;
+}
+
+#newTweet {
+    width: 500px;
+}
+
+main {
+    margin: 0 auto;
+    width: 80%;
+    padding: 25px;
+    background-color: #404b69;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#newTweetSection {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 50px
+}
+
+footer {
+    /* position: fixed;
+    bottom: 20px; */
+    width: 100%
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: yellow;
+}
+
+.tweet {
+    background-color: #00818a;
+    padding: 10px;
+    margin: 15px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+#userSpecific {
+    margin-right: 15px;
+}
+
+.userSpecificTweet {
+font-size: 1.25em;
+margin-top: 10px;
+margin-bottom: 15px;
+border-bottom: 1px solid rgba(255,255,255,0.33);
+padding-bottom: 20px;
+}
+
+.userSpecificTweet:last-of-type {
+    border-bottom: none;
+}
+
+.userSpecificTweet p {
+    margin: 0;
+}
+
+.user {
+    font-weight: bold;
+    background-color: #00818a;
+    border: none;
+    color: white;
+}
+
+.user:hover {
+    color: yellow;
+}
+
+.created_at {
+    font-weight: light;
+}
+
+.hidden {
+    display: none;
+}
+
+/* #recent p {
+    padding-left: 10px;
+} */
+
+.userSpecificDate {
+    font-size: .66em;
+    font-style: italic;
+}
+
+.tweet .message {
+    /* padding-left: 15px; */
+    line-height: 1;
+    padding-top: 0;
+    margin-top: 8px;
+    font-size: 1.33em;
+    margin-bottom: 5px;
+}
+
+.tweet .tag {
+padding-bottom: 0;
+margin-bottom: 0;
+}
+
+.hashtag:hover {
+    color: yellow;
+}
+
+#welcomeMessageUser:hover {
+    color: yellow;
+}
+
+/* @media (max-width: 992px){
+ #recent {
+     width: 100%;
+ }
+} */
+
+.user2:hover {
+    color: yellow;
+} 
