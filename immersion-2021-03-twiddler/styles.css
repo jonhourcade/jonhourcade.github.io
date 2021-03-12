@@ -39,11 +39,10 @@ main {
 }
 
 #newTweetSection {
-    width: 100%;
     margin: 0 auto;
     margin-top: 10px;
     margin-bottom: 20px;
-    margin-left: 50px
+    margin-left: 15px
 }
 
 footer {
@@ -148,3 +147,8 @@ margin-bottom: 0;
 .user2:hover {
     color: yellow;
 } 
+
+ul {
+    padding-inline-start: 20px;
+
+}

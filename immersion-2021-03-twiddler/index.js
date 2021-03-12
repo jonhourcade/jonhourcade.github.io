@@ -4,7 +4,7 @@ $(document).ready(() => {
   addFormListeners();
 
   getRecentTweets();
-  setInterval(() => getRecentTweets(), 30000);
+  setInterval(() => getRecentTweets(), 20000);
 });
 
 const getTime = date => {

@@ -59,24 +59,30 @@
     <div class="row">
       <section id="newTweetSection" class="hidden">
         <form id="newTweetForm">
-          <div class="row">
-            <div class="col-10">
-              <input id="newTweetContent" type="text" class="form-control">
-            </div>
-            <div class="col">
-              <input id="newTweetButton" type="submit" class="btn btn-secondary" value="Tweet">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 col-md-10">
+                <input id="newTweetContent" type="text" class="form-control">
+              </div>
+              <div class="col">
+                <input id="newTweetButton" type="submit" class="btn btn-secondary" value="Tweet">
+              </div>
             </div>
           </div>
         </form>
       </section>
-      <section id="recent" class="col">
-        <h2 class="text-center">Recent Tweets</h2>
-        <ul></ul>
-      </section>
-      <section id="userSpecific" class="col">
-        <h2 class="text-center"></h2>
-        <ul></ul>
-      </section>
+      <div class="container-fluid">
+        <div class="row">
+          <section id="recent" class="col-12 col-md-8">
+            <h2 class="text-center">Recent Tweets</h2>
+            <ul></ul>
+          </section>
+          <section id="userSpecific" class="col">
+            <h2 class="text-center"></h2>
+            <ul></ul>
+          </section>
+        </div>
+      </div>
     </div>
   </main>
 
